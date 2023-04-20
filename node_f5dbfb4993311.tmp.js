@@ -28,12 +28,10 @@ class WebScraping:
         return room.find("span", class_="a8jt5op dir dir-ltr").text
 
     def get_rating(self, room):
-        rating_elem = room.find("span", class_="t5eq1io r4a59j5 dir dir-ltr")
-        return rating_elem.text if rating_elem is not None else "N/A"
         return room.find("span", class_="t5eq1io r4a59j5 dir dir-ltr").text
 
     def is_superhost(self, room):
-        return room.find("div", class_="t1mwk1n0 dir dir-ltr")
+        return room.find("span", class_="t1mwk1n0 dir dir-ltr") is not None
 
     def pick_all_rooms(self):
         for room in self.get_rooms():
