@@ -33,7 +33,11 @@ class WebScraping:
         return rating_elem.text if rating_elem is not None else "N/A"
 
     def is_superhost(self, room):
-        return room.find("div", class_="t1mwk1n0 dir dir-ltr")
+        superhost_div = room.find("div", class_="t1mwk1n0 dir dir-ltr")
+        if superhost_div is not None:
+            return superhost_div.text
+        else:
+            return ""
 
     def pick_all_rooms(self):
         all_rooms = []

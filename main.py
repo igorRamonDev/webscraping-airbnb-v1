@@ -18,7 +18,7 @@ df1 = pd.DataFrame({
     'bedrooms': [web_scraping.get_bedrooms(room) for room in web_scraping.get_rooms()],
     'price': [web_scraping.get_price(room) for room in web_scraping.get_rooms()],
     'rating': [web_scraping.get_rating(room) for room in web_scraping.get_rooms()],
-    'is_superhost': [web_scraping.is_superhost(room) for room in web_scraping.get_rooms()]
+    'superhost': [web_scraping.is_superhost(room) for room in web_scraping.get_rooms()]
 })
 
 # DataFrame url2
@@ -28,7 +28,7 @@ df2 = pd.DataFrame({
     'bedrooms': [web_scraping2.get_bedrooms(room) for room in web_scraping2.get_rooms()],
     'price': [web_scraping2.get_price(room) for room in web_scraping2.get_rooms()],
     'rating': [web_scraping2.get_rating(room) for room in web_scraping2.get_rooms()],
-    'is_superhost': [web_scraping2.is_superhost(room) for room in web_scraping2.get_rooms()]
+    'superhost': [web_scraping2.is_superhost(room) for room in web_scraping2.get_rooms()]
 })
 
 # Concatenando os dois dataframes em um único dataframe
