@@ -11,6 +11,7 @@ web_scraping2 = WebScraping2(url2)
 print(web_scraping.pick_all_rooms())
 print(web_scraping2.pick_all_rooms())
 
+# DataFrame url1
 df = pd.DataFrame({
     'title': [web_scraping.get_title(room) for room in web_scraping.get_rooms()],
     'subtitle': [web_scraping.get_subtitle(room) for room in web_scraping.get_rooms()],
@@ -20,6 +21,7 @@ df = pd.DataFrame({
     'is_superhost': [web_scraping.is_superhost(room) for room in web_scraping.get_rooms()]
 })
 
+# DataFrame url2
 df2 = pd.DataFrame({
     'title': [web_scraping2.get_title(room) for room in web_scraping2.get_rooms()],
     'subtitle': [web_scraping2.get_subtitle(room) for room in web_scraping2.get_rooms()],
