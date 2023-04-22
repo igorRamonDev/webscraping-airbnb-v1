@@ -34,7 +34,7 @@ df2 = pd.DataFrame({
 # Concatenando os dois dataframes em um único dataframe
 df = pd.concat([df1, df2])
 
-# escreve o DataFrame em um arquivo Excel
+# escreve o DataFrame em um arquivo Excel,
 df1.to_excel('url1.xlsx', index=False)
 df2.to_excel('url2.xlsx', index=False)
 df.to_excel('araruama_stats.xlsx', index=False)
