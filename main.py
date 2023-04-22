@@ -12,7 +12,7 @@ print(web_scraping.pick_all_rooms())
 print(web_scraping2.pick_all_rooms())
 
 # DataFrame url1
-df = pd.DataFrame({
+df1 = pd.DataFrame({
     'title': [web_scraping.get_title(room) for room in web_scraping.get_rooms()],
     'subtitle': [web_scraping.get_subtitle(room) for room in web_scraping.get_rooms()],
     'bedrooms': [web_scraping.get_bedrooms(room) for room in web_scraping.get_rooms()],
@@ -31,6 +31,10 @@ df2 = pd.DataFrame({
     'is_superhost': [web_scraping2.is_superhost(room) for room in web_scraping2.get_rooms()]
 })
 
+# Concatenando os dois dataframes em um único dataframe
+df = pd.concat([df1, df2])
+
 # escreve o DataFrame em um arquivo Excel
-df.to_excel('output.xlsx', index=False)
-df2.to_excel('output2.xlsx', index=False)
+df1.to_excel('url1.xlsx', index=False)
+df2.to_excel('url2.xlsx', index=False)
+df.to_excel('araruama_stats.xlsx', index=False)

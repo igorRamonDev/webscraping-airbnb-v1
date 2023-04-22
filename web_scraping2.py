@@ -1,4 +1,4 @@
-# url 2
+# url2 =
 from bs4 import BeautifulSoup
 import requests
 
