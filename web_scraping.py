@@ -1,3 +1,4 @@
+
 from bs4 import BeautifulSoup
 import requests
 
@@ -30,12 +31,12 @@ class WebScraping:
     def get_rating(self, room):
         rating_elem = room.find("span", class_="t5eq1io r4a59j5 dir dir-ltr")
         return rating_elem.text if rating_elem is not None else "N/A"
-        return room.find("span", class_="t5eq1io r4a59j5 dir dir-ltr").text
 
     def is_superhost(self, room):
         return room.find("div", class_="t1mwk1n0 dir dir-ltr")
 
     def pick_all_rooms(self):
+        all_rooms = []
         for room in self.get_rooms():
             title = self.get_title(room)
             subtitle = self.get_subtitle(room)
@@ -43,10 +44,10 @@ class WebScraping:
             price = self.get_price(room)
             rating = self.get_rating(room)
             is_superhost = self.is_superhost(room)
-            print(title)
-            print(subtitle)
-            print(bedrooms)
-            print(price)
-            print(rating)
-            print("Superhost: {}".format("Yes" if is_superhost else "No"))
-            print("\n")
+            all_rooms.append({"title": title,
+                              "subtitle": subtitle,
+                              "bedrooms": bedrooms,
+                              "price": price,
+                              "rating": rating,
+                              "is_superhost": is_superhost})
+        return all_rooms
