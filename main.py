@@ -17,23 +17,46 @@ print(hora)
 # DataFrame url1
 df1 = pd.DataFrame({
     'title': [web_scraping.get_title(room) for room in web_scraping.get_rooms()],
+    ' ': None,
+    '  ': None,
     'subtitle': [web_scraping.get_subtitle(room) for room in web_scraping.get_rooms()],
+    '   ': None,
+    '    ': None,
+    '      ': None,
+    '       ': None,
     'bedrooms': [web_scraping.get_bedrooms(room) for room in web_scraping.get_rooms()],
+    '        ': None,
     'price': [web_scraping.get_price(room) for room in web_scraping.get_rooms()],
+    '         ': None,
+    '          ': None,
+    '           ': None,
     'rating': [web_scraping.get_rating(room) for room in web_scraping.get_rooms()],
-    'superhost': [web_scraping.is_superhost(room) for room in web_scraping.get_rooms()]
+    '            ': None,
+    'superhost': [web_scraping.is_superhost(room) for room in web_scraping.get_rooms()],
+    '             ': None
 })
 
 # DataFrame url2
 df2 = pd.DataFrame({
     'title': [web_scraping2.get_title(room) for room in web_scraping2.get_rooms()],
+    ' ': None,
+    '  ': None,
     'subtitle': [web_scraping2.get_subtitle(room) for room in web_scraping2.get_rooms()],
+    '   ': None,
+    '    ': None,
+    '      ': None,
+    '       ': None,
     'bedrooms': [web_scraping2.get_bedrooms(room) for room in web_scraping2.get_rooms()],
+    '        ': None,
     'price': [web_scraping2.get_price(room) for room in web_scraping2.get_rooms()],
+    '         ': None,
+    '          ': None,
+    '           ': None,
     'rating': [web_scraping2.get_rating(room) for room in web_scraping2.get_rooms()],
-    'superhost': [web_scraping2.is_superhost(room) for room in web_scraping2.get_rooms()]
+    '            ': None,
+    'superhost': [web_scraping2.is_superhost(room) for room in web_scraping2.get_rooms()],
+    '             ': None
 })
-
 df2['execution'] = hora.strftime("%d/%m/%Y %H:%M:%S")
 df1['execution'] = hora.strftime("%d/%m/%Y %H:%M:%S")
 
