@@ -1,4 +1,5 @@
 import pandas as pd
+import datetime
 from web_scraping import WebScraping
 from web_scraping2 import WebScraping2
 
@@ -7,9 +8,11 @@ url2 = "https://www.airbnb.com.br/s/Araruama-~-RJ/homes?flexible_trip_lengths%5B
 
 web_scraping = WebScraping(url)
 web_scraping2 = WebScraping2(url2)
+hora = datetime.datetime.now()
 
 print(web_scraping.pick_all_rooms())
 print(web_scraping2.pick_all_rooms())
+print(hora)
 
 # DataFrame url1
 df1 = pd.DataFrame({
@@ -30,6 +33,9 @@ df2 = pd.DataFrame({
     'rating': [web_scraping2.get_rating(room) for room in web_scraping2.get_rooms()],
     'superhost': [web_scraping2.is_superhost(room) for room in web_scraping2.get_rooms()]
 })
+
+df2['execution'] = hora.strftime("%d/%m/%Y %H:%M:%S")
+df1['execution'] = hora.strftime("%d/%m/%Y %H:%M:%S")
 
 # Concatenando os dois dataframes em um único dataframe
 df = pd.concat([df1, df2])
