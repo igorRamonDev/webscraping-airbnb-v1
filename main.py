@@ -1,5 +1,7 @@
 import pandas as pd
 import datetime
+import re
+import openpyxl
 from web_scraping import WebScraping
 from web_scraping2 import WebScraping2
 
@@ -33,7 +35,8 @@ df1 = pd.DataFrame({
     'rating': [web_scraping.get_rating(room) for room in web_scraping.get_rooms()],
     '            ': None,
     'superhost': [web_scraping.is_superhost(room) for room in web_scraping.get_rooms()],
-    '             ': None
+    '             ': None,
+    '': None  # Vazio
 })
 
 # DataFrame url2
@@ -55,13 +58,48 @@ df2 = pd.DataFrame({
     'rating': [web_scraping2.get_rating(room) for room in web_scraping2.get_rooms()],
     '            ': None,
     'superhost': [web_scraping2.is_superhost(room) for room in web_scraping2.get_rooms()],
-    '             ': None
+    '             ': None,
+    '': None  # Vazio
 })
+
 df2['execution'] = hora.strftime("%d/%m/%Y %H:%M:%S")
 df1['execution'] = hora.strftime("%d/%m/%Y %H:%M:%S")
 
 # Concatenando os dois dataframes em um único dataframe
 df = pd.concat([df1, df2])
+
+# função para converter o preço em float
+
+
+def convert_price_to_float(price_string):
+    # Extrai o valor numérico da string usando uma expressão regular
+    match = re.search(r'\d+', price_string)
+    if match:
+        # Converte o valor numérico em float
+        return float(match.group())
+    else:
+        return None
+
+
+# Insert the 'media/d' column after the placeholder column
+df1.insert(18, 'media/d', df1['price'].apply(convert_price_to_float).mean())
+# Insert the 'media/d' column after the placeholder column
+df2.insert(18, 'media/d', df2['price'].apply(convert_price_to_float).mean())
+# Insert the 'media/d' column after the placeholder column
+df.insert(18, 'media/d', df['price'].apply(convert_price_to_float).mean())
+
+# df1
+df1['media/d'] = df1['price'].apply(convert_price_to_float).mean()
+df1['media/d'] = 'R$ ' + \
+    df1['media/d'].apply(lambda x: '{:.2f}'.format(x))
+# df2
+df2['media/d'] = df2['price'].apply(convert_price_to_float).mean()
+df2['media/d'] = 'R$ ' + \
+    df2['media/d'].apply(lambda x: '{:.2f}'.format(x))
+# df
+df['media/d'] = df['price'].apply(convert_price_to_float).mean()
+df['media/d'] = 'R$ ' + \
+    df['media/d'].apply(lambda x: '{:.2f}'.format(x))
 
 # escreve o DataFrame em um arquivo Excel,
 df1.to_excel('url1.xlsx', index=False)
