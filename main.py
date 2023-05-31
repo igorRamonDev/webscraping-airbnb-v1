@@ -2,6 +2,7 @@ import pandas as pd
 import datetime
 import re
 import openpyxl
+from openpyxl.styles import Font
 from web_scraping1 import WebScraping1
 from web_scraping2 import WebScraping2
 from web_scraping3 import WebScraping3
@@ -213,3 +214,21 @@ df3.to_excel('url3.xlsx', index=False)
 df4.to_excel('url4.xlsx', index=False)
 df5.to_excel('url5.xlsx', index=False)
 df_total.to_excel('araruama_stats.xlsx', index=False)
+
+# carreganndo o excel
+workbook = openpyxl.load_workbook('araruama_stats.xlsx')
+# selecionando a workbsheet
+worksheet = workbook['Sheet1']
+
+# procurando o titulo
+target_title = "Casa com piscina em condomínio Sonho de Vida"
+
+# encontrando a linha
+for row in worksheet.iter_rows(values_only=True):
+    if target_title in row:
+        target_row = row
+        break
+# armazenando apenas os valores nao nulos
+values = [value for value in target_row if value is not None]
+# armazenando cada valor da lista em uma variavel
+titulo, subtitulo, camas, preco, avaliacao, superhost, execution = values[:7]
