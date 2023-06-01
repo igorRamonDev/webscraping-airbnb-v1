@@ -29,7 +29,7 @@ class WebScraping3:
         return room.find("span", class_="a8jt5op dir dir-ltr").text
 
     def get_rating(self, room):
-        rating_elem = room.find("span", class_="t5eq1io r4a59j5 dir dir-ltr")
+        rating_elem = room.find("span", class_="r1dxllyb dir dir-ltr")
         return rating_elem.text if rating_elem is not None else "N/A"
 
     def is_superhost(self, room):

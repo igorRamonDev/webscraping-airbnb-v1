@@ -215,20 +215,26 @@ df4.to_excel('url4.xlsx', index=False)
 df5.to_excel('url5.xlsx', index=False)
 df_total.to_excel('araruama_stats.xlsx', index=False)
 
-# carreganndo o excel
+# Carregando o excel
 workbook = openpyxl.load_workbook('araruama_stats.xlsx')
-# selecionando a workbsheet
+
+# Selecionando o worksheet
 worksheet = workbook['Sheet1']
 
-# procurando o titulo
+# Procurando o titulo
 target_title = "Casa com piscina em condomínio Sonho de Vida"
 
-# encontrando a linha
+# Encontrando a linha
 for row in worksheet.iter_rows(values_only=True):
     if target_title in row:
         target_row = row
         break
-# armazenando apenas os valores nao nulos
+
+# Armazenando apenas os valores nao nulos
 values = [value for value in target_row if value is not None]
-# armazenando cada valor da lista em uma variavel
+
+# Armazenando cada valor da lista em uma variavel
 titulo, subtitulo, camas, preco, avaliacao, superhost, execution = values[:7]
+
+# Printando os valores
+print(titulo, subtitulo, camas, preco, avaliacao, superhost, execution)
